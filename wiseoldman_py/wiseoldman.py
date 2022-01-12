@@ -1,5 +1,5 @@
 import requests
-from .wom_types import Player
+from .player import Player
 
 
 class WiseOldMan:
@@ -9,6 +9,3 @@ class WiseOldMan:
     def get_player(self, osrs_username: str) -> Player:
         player_json = requests.get(f"{self.base_url}/players/username/{osrs_username}").json()
         return Player(player_json)
-
-
-print(WiseOldMan().get_player("bexlii").exp)
