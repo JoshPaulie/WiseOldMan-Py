@@ -1,5 +1,5 @@
 import requests
-from wom_types import Player
+from .wom_types import Player
 
 
 class WiseOldMan:
