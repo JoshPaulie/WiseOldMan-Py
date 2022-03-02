@@ -1,1 +1,3 @@
-Wise Old Man wrapper.
+Pythonic Wise Old Man wrapper.
+
+⚠️ Heavy development.
