@@ -1,40 +1,141 @@
 """Holds custom data types"""
+from typing import Optional
+
+from pydantic import BaseModel
 
 
-class Player:
-    def __init__(self, player_data: dict) -> None:
-        self.player_data = player_data
-        self.exp = self.player_data["exp"]
-        self.id = self.player_data["id"]
-        self.username = self.player_data["username"]
-        self.display_name = self.player_data["displayName"]
-        self.type = self.player_data["type"]
-        self.build = self.player_data["build"]
-        self.country = self.player_data["country"]
-        self.flagged = self.player_data["flagged"]
-        self.ehp = self.estimated_hours_played = self.player_data["ehp"]
-        self.ehb = self.player_data["ehb"]
-        self.ttm = self.player_data["ttm"]
-        self.tt200m = self.player_data["tt200m"]
-        self.last_imported_at = self.player_data["lastImportedAt"]
-        self.last_changed_at = self.player_data["lastChangedAt"]
-        self.registered_at = self.player_data["registeredAt"]
-        self.updated_at = self.player_data["updatedAt"]
-        self.combat_level = self.player_data["combatLevel"]
-        self.latest_snapshot = self.player_data["latestSnapshot"]
-        self.skill = Skills(self.latest_snapshot)
-
-    def __repr__(self) -> str:
-        return f"{self.username=}"
+class Skill(BaseModel):
+    rank: int
+    experience: int
+    ehp: float
 
 
-class Skills:
-    def __init__(self, latest_snapshot) -> None:
-        self.latest_snapshot = latest_snapshot
-        self.overall_rank = self.latest_snapshot["overall"]["rank"]
-        self.overall_experience = self.latest_snapshot["overall"]["experience"]
-        self.overall_ehp = self.latest_snapshot["overall"]["ehp"]
+class BossKC(BaseModel):
+    rank: int
+    kills: int
+    ehb: float
 
-        self.attack_rank = self.latest_snapshot["attack"]["rank"]
-        self.attack_experience = self.latest_snapshot["attack"]["experience"]
-        self.attack_ehp = self.latest_snapshot["attack"]["ehp"]
+
+class EstimatedHours(BaseModel):
+    rank: int
+    value: float
+
+
+class CluesAndBounties(BaseModel):
+    rank: int
+    score: float
+
+
+class Snapshot(BaseModel):
+    createdAt: str
+    importedAt: Optional[str]
+    overall: Skill
+    attack: Skill
+    defence: Skill
+    strength: Skill
+    hitpoints: Skill
+    ranged: Skill
+    prayer: Skill
+    magic: Skill
+    cooking: Skill
+    woodcutting: Skill
+    fletching: Skill
+    fishing: Skill
+    firemaking: Skill
+    crafting: Skill
+    smithing: Skill
+    mining: Skill
+    herblore: Skill
+    agility: Skill
+    thieving: Skill
+    slayer: Skill
+    farming: Skill
+    runecrafting: Skill
+    hunter: Skill
+    construction: Skill
+
+    league_points: CluesAndBounties
+    bounty_hunter_hunter: CluesAndBounties
+    bounty_hunter_rogue: CluesAndBounties
+    clue_scrolls_all: CluesAndBounties
+    clue_scrolls_beginner: CluesAndBounties
+    clue_scrolls_easy: CluesAndBounties
+    clue_scrolls_medium: CluesAndBounties
+    clue_scrolls_hard: CluesAndBounties
+    clue_scrolls_elite: CluesAndBounties
+    clue_scrolls_master: CluesAndBounties
+    last_man_standing: CluesAndBounties
+    soul_wars_zeal: CluesAndBounties
+
+    abyssal_sire: BossKC
+    alchemical_hydra: BossKC
+    barrows_chests: BossKC
+    bryophyta: BossKC
+    callisto: BossKC
+    cerberus: BossKC
+    chambers_of_xeric: BossKC
+    chambers_of_xeric_challenge_mode: BossKC
+    chaos_elemental: BossKC
+    chaos_fanatic: BossKC
+    commander_zilyana: BossKC
+    corporeal_beast: BossKC
+    crazy_archaeologist: BossKC
+    dagannoth_prime: BossKC
+    dagannoth_rex: BossKC
+    dagannoth_supreme: BossKC
+    deranged_archaeologist: BossKC
+    general_graardor: BossKC
+    giant_mole: BossKC
+    grotesque_guardians: BossKC
+    hespori: BossKC
+    kalphite_queen: BossKC
+    king_black_dragon: BossKC
+    kraken: BossKC
+    kreearra: BossKC
+    kril_tsutsaroth: BossKC
+    mimic: BossKC
+    nex: BossKC
+    nightmare: BossKC
+    phosanis_nightmare: BossKC
+    obor: BossKC
+    sarachnis: BossKC
+    scorpia: BossKC
+    skotizo: BossKC
+    tempoross: BossKC
+    the_gauntlet: BossKC
+    the_corrupted_gauntlet: BossKC
+    theatre_of_blood: BossKC
+    theatre_of_blood_hard_mode: BossKC
+    thermonuclear_smoke_devil: BossKC
+    tzkal_zuk: BossKC
+    tztok_jad: BossKC
+    venenatis: BossKC
+    vetion: BossKC
+    vorkath: BossKC
+    wintertodt: BossKC
+    zalcano: BossKC
+    zulrah: BossKC
+
+    ehp: EstimatedHours
+    ehb: EstimatedHours
+
+
+class Player(BaseModel):
+    exp: int
+    id: int
+    username: str
+    displayName: str
+    type: str
+    build: str
+    country: Optional[str]
+    flagged: bool
+    ehp: float
+    ehb: float
+    ttm: float
+    tt200m: float
+    lastImportedAt: str  # Needs to be converted to Datetime
+    lastChangedAt: str  # Needs to be converted to Datetime
+    registeredAt: str  # Needs to be converted to Datetime
+    updatedAt: str  # Needs to be converted to Datetime
+    combatLevel: int
+    latestSnapshot: Snapshot
