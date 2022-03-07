@@ -1,8 +1,8 @@
 # Pythonic Wise Old Man wrapper.
 
-⚠️ Heavy development. Unworking state.
+This project is in a working state, but lacks many features.
 
-March 7, 22: The next commit will take some time. ETA March 11th.
+You can add me on discord [here](https://discordapp.com/users/177131156028784640) if you are interested in helping me package this up for others to use.
 
 ## Example Usage
 
@@ -12,5 +12,5 @@ import wiseoldman
 wom = wiseoldman.WiseOldMan()
 bexlii = wom.get_player("bexlii")
 
-print(bexlii.skill.attack_experience) # 2601528
+print(bexlii.latestSnapshot.attack.experience) # 2601528
 ```
