@@ -1,7 +1,8 @@
-"""Holds custom data types"""
+"""Holds custom Player data types"""
+import datetime
 from typing import Optional
 
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 
 class Skill(BaseModel):
@@ -27,8 +28,8 @@ class CluesAndBounties(BaseModel):
 
 
 class Snapshot(BaseModel):
-    createdAt: str
-    importedAt: Optional[str]
+    created_at: Optional[datetime.datetime] = Field(alias="createdAt")
+    imported_at: Optional[datetime.datetime] = Field(alias="importedAt")
     overall: Skill
     attack: Skill
     defence: Skill
@@ -122,10 +123,10 @@ class Snapshot(BaseModel):
 
 class Player(BaseModel):
     exp: int
-    id: int
+    player_id: int = Field(alias="id")
     username: str
-    displayName: str
-    type: str
+    display_name: str = Field(alias="displayName")
+    account_type: str = Field(alias="type")
     build: str
     country: Optional[str]
     flagged: bool
@@ -133,9 +134,9 @@ class Player(BaseModel):
     ehb: float
     ttm: float
     tt200m: float
-    lastImportedAt: str  # Needs to be converted to Datetime
-    lastChangedAt: str  # Needs to be converted to Datetime
-    registeredAt: str  # Needs to be converted to Datetime
-    updatedAt: str  # Needs to be converted to Datetime
-    combatLevel: int
-    latestSnapshot: Snapshot
+    last_imported_at: Optional[datetime.datetime] = Field(alias="lastImportedAt")
+    last_changed_at: Optional[datetime.datetime] = Field(alias="lastChangedAt")
+    registered_at: Optional[datetime.datetime] = Field(alias="registeredAt")
+    updated_at: Optional[datetime.datetime] = Field(alias="updatedAt")
+    combat_level: int = Field(alias="combatLevel")
+    latestSnapshot: Snapshot  # Not sure what to do with this one 🤔 It needs to be both a Field and a Snapshot
