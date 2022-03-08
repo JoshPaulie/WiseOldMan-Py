@@ -4,11 +4,17 @@ from typing import Optional
 
 from pydantic import BaseModel, Field
 
+from .modules.calculators import get_level
+
 
 class Skill(BaseModel):
     rank: int
     experience: int
     ehp: float
+
+    @property
+    def level(self) -> int:
+        return get_level(self.experience)
 
 
 class BossKC(BaseModel):
