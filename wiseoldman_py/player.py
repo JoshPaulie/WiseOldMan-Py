@@ -139,4 +139,10 @@ class Player(BaseModel):
     registered_at: Optional[datetime.datetime] = Field(alias="registeredAt")
     updated_at: Optional[datetime.datetime] = Field(alias="updatedAt")
     combat_level: int = Field(alias="combatLevel")
+<<<<<<< HEAD
     latest_snapshot: Snapshot = Field(alias="latestSnapshot")
+=======
+    latest_snapshot: Snapshot = Field(
+        alias="latestSnapshot"
+    )  # Not sure what to do with this one 🤔 It needs to be both a Field and a Snapshot
+>>>>>>> 2afb2a6d3de5c3fda9e28e534951b1e988c581d4
