@@ -9,12 +9,12 @@ from .modules.calculators import get_level
 
 class Skill(BaseModel):
     rank: int
-    experience: int
+    exp: int = Field(alias="experience")
     ehp: float
 
     @property
     def level(self) -> int:
-        return get_level(self.experience)
+        return get_level(self.exp)
 
 
 class BossKC(BaseModel):
@@ -128,7 +128,7 @@ class Snapshot(BaseModel):
 
 
 class Player(BaseModel):
-    exp: int
+    total_exp: int = Field(alias="exp")
     player_id: int = Field(alias="id")
     username: str
     display_name: str = Field(alias="displayName")
