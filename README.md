@@ -12,5 +12,5 @@ import wiseoldman
 wom = wiseoldman.WiseOldMan()
 bexlii = wom.get_player("bexlii")
 
-print(bexlii.latestSnapshot.attack.experience) # 2601528
+print(bexlii.latest_snapshot.attack.experience) # 2601528
 ```

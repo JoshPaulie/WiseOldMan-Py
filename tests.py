@@ -10,4 +10,4 @@ def test_get_player():
 
 
 def test_player_skill():
-    assert isinstance(bexlii.latestSnapshot.attack.experience, int)
+    assert isinstance(bexlii.latest_snapshot.attack.experience, int)
