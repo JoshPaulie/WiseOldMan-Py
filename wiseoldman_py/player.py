@@ -33,7 +33,9 @@ class CluesAndBounties(BaseModel):
     score: float
 
 
-class Snapshot(BaseModel):
+class LatestStats(BaseModel):
+    """Parses the latest 'snapshot' WOM has."""
+
     created_at: Optional[datetime.datetime] = Field(alias="createdAt")
     imported_at: Optional[datetime.datetime] = Field(alias="importedAt")
     overall: Skill
@@ -145,4 +147,5 @@ class Player(BaseModel):
     registered_at: Optional[datetime.datetime] = Field(alias="registeredAt")
     updated_at: Optional[datetime.datetime] = Field(alias="updatedAt")
     combat_level: int = Field(alias="combatLevel")
-    latest_snapshot: Snapshot = Field(alias="latestSnapshot")
+    # Abstracted "latest snapshot" -> "latest_stats" for brevity and clarity for the end user
+    latest_stats: LatestStats = Field(alias="latestSnapshot")
