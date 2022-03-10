@@ -8,5 +8,6 @@ class WiseOldMan:
         self.base_url = "https://api.wiseoldman.net"
 
     def get_player(self, osrs_username: str) -> Player:
+        """Searches WOM for player, returns Player with latest snapshot"""
         player_json = requests.get(f"{self.base_url}/players/username/{osrs_username}").json()
         return Player(**player_json)
