@@ -1,17 +1,10 @@
-# Welcome to MkDocs
+# Welcome to WiseOldMan-Py
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+## About
+WiseOldMan-Py is a simple Python wrapper for wiseoldman.net, an Old School RuneScape stat tracking site. **This package is not officially endorsed**, but the WOM dev team is aware and I'd like this to be the official Py wrapper. 
 
-## Commands
+## Usage
+Everything stems from the main WiseOldMan object. Various methods are used to interact with different end points, outlined below. 
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
-
-## Project layout
-
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+## Endpoints
+`/player` is accessed with `WiseOldMan.get_player()`, either by username or ID.
