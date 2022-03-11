@@ -35,6 +35,7 @@ class WiseOldMan:
         if user_id:
             player_json = requests.get(f"{self.base_url}/players/{user_id}/achievements").json()
 
+        # ? No comp to make sure an empty list can be returned
         achievements = []
         for a in player_json:
             achievements.append(Achievement(**a))
