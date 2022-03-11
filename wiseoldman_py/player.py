@@ -156,5 +156,4 @@ class Player(BaseModel):
     registered_at: Optional[datetime.datetime] = Field(alias="registeredAt")
     updated_at: Optional[datetime.datetime] = Field(alias="updatedAt")
     combat_level: int = Field(alias="combatLevel")
-    # Abstracted "latest snapshot" -> "latest_stats" for brevity and clarity for the end user
-    latest_stats: LatestStats = Field(alias="latestSnapshot")
+    latest_snapshot: LatestStats = Field(alias="latestSnapshot")

@@ -19,10 +19,10 @@ def test_get_player_by_user_id():
 def test_player_skill_level():
     """Test for player's skill, which is a custom property that should be checked."""
     bexlii = wom.get_player(username="bexlii")
-    assert isinstance(bexlii.latest_stats.attack.level, int)
+    assert isinstance(bexlii.latest_snapshot.attack.level, int)
 
 
 def test_player_get_achievements():
-    """Test for player's skill, which is a custom property that should be checked."""
+    """Test for getting a player's achievements"""
     bexlii_achievements = wom.get_player_achievements(username="bexlii")
     assert isinstance(bexlii_achievements, list)
