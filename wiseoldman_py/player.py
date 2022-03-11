@@ -4,7 +4,7 @@ from typing import Optional
 
 from pydantic import BaseModel, Field
 
-from .modules.calculators import get_level
+from .modules.calculators import get_level, get_virtual_level
 
 
 class Achievement(BaseModel):
@@ -24,6 +24,10 @@ class Skill(BaseModel):
     @property
     def level(self) -> int:
         return get_level(self.exp)
+
+    @property
+    def virtual_level(self) -> int:
+        return get_virtual_level(self.exp)
 
 
 class BossKC(BaseModel):
@@ -140,10 +144,10 @@ class LatestStats(BaseModel):
 
 class Player(BaseModel):
     total_exp: int = Field(alias="exp")
-    player_id: int = Field(alias="id")
+    player_id: int = Field(alias="id")  # ? 'id' is a keyword
     username: str
     display_name: str = Field(alias="displayName")
-    account_type: str = Field(alias="type")
+    account_type: str = Field(alias="type")  # ? 'type' is a keyword
     build: str
     country: Optional[str]
     flagged: bool
