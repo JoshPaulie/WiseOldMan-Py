@@ -7,6 +7,15 @@ from pydantic import BaseModel, Field
 from .modules.calculators import get_level
 
 
+class Achievement(BaseModel):
+    threshold: int
+    player_id: int = Field(alias="playerId")
+    name: str
+    metric: str
+    created_at: Optional[datetime.datetime] = Field(alias="createdAt")
+    measure: str
+
+
 class Skill(BaseModel):
     rank: int
     exp: int = Field(alias="experience")
