@@ -1,4 +1,4 @@
-"""Holds custom Player data types"""
+"""Holds Player (and related) models"""
 import datetime
 from typing import Optional
 
@@ -8,6 +8,8 @@ from .modules.calculators import get_level, get_virtual_level
 
 
 class Achievement(BaseModel):
+    """Parses Achievement"""
+
     threshold: int
     player_id: int = Field(alias="playerId")
     name: str
@@ -17,31 +19,41 @@ class Achievement(BaseModel):
 
 
 class Skill(BaseModel):
+    """Parses skill and offers level and virtual level"""
+
     rank: int
     exp: int = Field(alias="experience")
     ehp: float
 
     @property
     def level(self) -> int:
+        """Returns Skill's level up to 99"""
         return get_level(self.exp)
 
     @property
     def virtual_level(self) -> int:
+        """Returns Skill's level up to and beyond 99"""
         return get_virtual_level(self.exp)
 
 
 class BossKC(BaseModel):
+    """Parses a Player's boss 'kill count'"""
+
     rank: int
     kills: int
     ehb: float
 
 
 class EstimatedHours(BaseModel):
+    """Parses estimated hours played in given activity"""
+
     rank: int
     value: float
 
 
 class CluesAndBounties(BaseModel):
+    """Parses Clues and Bounties, provides rank and score (amount)"""
+
     rank: int
     score: float
 
