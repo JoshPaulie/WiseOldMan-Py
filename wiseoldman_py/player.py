@@ -7,6 +7,7 @@ from pydantic import BaseModel, Field
 
 from .modules.calculators import get_level, get_virtual_level
 from .modules.static import WOM_BASE_URL
+from .wom_exceptions import PlayerHasNoAchievementsError
 
 
 class Achievement(BaseModel):
@@ -176,11 +177,15 @@ class Player(BaseModel):
     combat_level: int = Field(alias="combatLevel")
     latest_snapshot: LatestStats = Field(alias="latestSnapshot")
 
-    def get_achievements(self) -> list[Achievement]:
+    def get_achievements(self, error_if_none=False) -> list[Achievement]:
+        """📞 Makes another call to the API. Returns any achievements the player has."""
         player_achievement_json = requests.get(f"{WOM_BASE_URL}/players/{self.player_id}/achievements").json()
 
         achievements = []
         for a in player_achievement_json:
             achievements.append(Achievement(**a))
 
-        return achievements
+        if len(achievements) == 0 and error_if_none:
+            raise PlayerHasNoAchievementsError
+        else:
+            return achievements
