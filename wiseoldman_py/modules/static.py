@@ -99,3 +99,5 @@ LEVEL_EXPERIENCE_MILESTONES = [
     11805606,
     13034431,
 ]
+
+WOM_BASE_URL = "https://api.wiseoldman.net"

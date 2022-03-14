@@ -2,9 +2,11 @@
 import datetime
 from typing import Optional
 
+import requests
 from pydantic import BaseModel, Field
 
 from .modules.calculators import get_level, get_virtual_level
+from .modules.static import WOM_BASE_URL
 
 
 class Achievement(BaseModel):
@@ -173,3 +175,12 @@ class Player(BaseModel):
     updated_at: Optional[datetime.datetime] = Field(alias="updatedAt")
     combat_level: int = Field(alias="combatLevel")
     latest_snapshot: LatestStats = Field(alias="latestSnapshot")
+
+    def get_achievements(self) -> list[Achievement]:
+        player_achievement_json = requests.get(f"{WOM_BASE_URL}/players/{self.player_id}/achievements").json()
+
+        achievements = []
+        for a in player_achievement_json:
+            achievements.append(Achievement(**a))
+
+        return achievements
