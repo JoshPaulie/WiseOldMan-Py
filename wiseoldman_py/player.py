@@ -9,7 +9,6 @@ from wiseoldman_py.competitions import Competition
 
 from .modules.calculators import get_level, get_virtual_level
 from .modules.static import WOM_BASE_URL
-from .wom_exceptions import PlayerHasNoAchievementsError
 
 
 class Achievement(BaseModel):
@@ -63,8 +62,8 @@ class CluesAndBounties(BaseModel):
     score: float
 
 
-class LatestStats(BaseModel):
-    """Parses the latest 'snapshot' WOM has."""
+class Snapshot(BaseModel):
+    """Parses the a WOM 'snapshot'. This is essentially a player's stats at a given time"""
 
     created_at: Optional[datetime.datetime] = Field(alias="createdAt")
     imported_at: Optional[datetime.datetime] = Field(alias="importedAt")
@@ -160,6 +159,16 @@ class LatestStats(BaseModel):
 
 
 class Player(BaseModel):
+    """
+    Represents a player from Wiseoldman. 🧙‍♂️
+
+    🔌 Endpoint(s): /players/, /players/achievements, /players/competitions
+
+    At initialization this is just WOM account data, as well as the latest snapshot WOM has.
+
+    Additional 'get' methods are used to access additional information endpoints to the same player (ie achievements, competitions)
+    """
+
     total_exp: int = Field(alias="exp")
     player_id: int = Field(alias="id")  # ? 'id' is a keyword
     username: str
@@ -177,7 +186,7 @@ class Player(BaseModel):
     registered_at: Optional[datetime.datetime] = Field(alias="registeredAt")
     updated_at: Optional[datetime.datetime] = Field(alias="updatedAt")
     combat_level: int = Field(alias="combatLevel")
-    latest_snapshot: LatestStats = Field(alias="latestSnapshot")
+    latest_snapshot: Snapshot = Field(alias="latestSnapshot")
 
     def get_achievements(self) -> list[Achievement]:
         """📞 Makes another call to the API. Returns any achievements the player has."""
