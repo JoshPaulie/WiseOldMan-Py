@@ -18,9 +18,13 @@ from wiseoldman_py.player import Player
 wom = wiseoldman.WiseOldMan()
 bexlii: Player = wom.get_player("bexlii")
 
-print(bexlii.latest_stats.attack.exp) # 2601528
+print(bexlii.latest_snapshot.attack.exp) # 2601528
 ```
 ## Endpoints
+
+### Player
 - `/player` 👉 `WiseOldMan.get_player(username=, user_id=) -> Player`
-- `/player/id/achievements` 👉 `WiseOldMan.get_player(username=, user_id=) -> List[Achievement]`
+- `/player/<id>/achievements` 👉 `Player.get_achievements() -> List[Achievement]`
+
+### Groups
 - `/groups` 👉 `WiseOldMan.get_group(group_id=) -> Group`
