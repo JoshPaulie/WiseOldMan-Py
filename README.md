@@ -23,4 +23,4 @@ print(bexlii.latest_stats.attack.exp) # 2601528
 ## Endpoints
 - `/player` 👉 `WiseOldMan.get_player(username=, user_id=) -> Player`
 - `/player/id/achievements` 👉 `WiseOldMan.get_player(username=, user_id=) -> List[Achievement]`
-- `/groups` 👉 `WiseOldMan.get_player(group_id=) -> Group`
+- `/groups` 👉 `WiseOldMan.get_group(group_id=) -> Group`
