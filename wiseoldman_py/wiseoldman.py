@@ -3,7 +3,7 @@ import requests
 from wiseoldman_py.wom_exceptions import PlayerNotFoundError
 
 from .groups import Group
-from .player import Achievement, Player
+from .player import Player
 
 
 class WiseOldMan:
@@ -23,6 +23,8 @@ class WiseOldMan:
         if user_id or (username and user_id):
             player_json = requests.get(f"{self.base_url}/players/{user_id}").json()
 
+        # ? Maybe this could be made into a validator within the
+        # ? Player model but idk how right now
         if player_json.get("message", None):
             message = player_json["message"]
             if message == "Player not found.":
@@ -36,5 +38,7 @@ class WiseOldMan:
             raise ValueError("A group id must be provided")
 
         group_json = requests.get(f"{self.base_url}/groups/{id}").json()
+
+        # TODO: handel if group not found
 
         return Group(**group_json)
