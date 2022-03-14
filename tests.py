@@ -4,15 +4,10 @@ from wiseoldman_py.player import Achievement, Player
 wom = wiseoldman.WiseOldMan()
 bexlii = wom.get_player(username="bexlii")
 
-
+# ! 📞 This makes a total of [[ 2 ]] api calls, use sparingly
 def test_get_player():
     """Test for player by username"""
     assert isinstance(bexlii, Player)
-
-
-def test_player_skill_level():
-    """Test for player's skill, which is a custom property that should be checked."""
-    assert isinstance(bexlii.latest_snapshot.attack.level, int)
 
 
 def test_player_get_achievements():
