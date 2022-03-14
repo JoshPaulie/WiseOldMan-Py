@@ -23,7 +23,10 @@ bexlii_competitions = bexlii.get_competitions()
 print(bexlii_achivements)
 print(bexlii_competitions)
 print(bexlii.latest_snapshot.attack.exp) # 2601528
-"""
+
+```
+👆 Would output 👇 (Formatted nicley for your viewing pleasure)
+```python
 [
     Achievement(threshold=13034431, player_id=369451, name='99 Cooking', metric='cooking', created_at=datetime.datetime(1970, 1, 1, 0, 0, tzinfo=datetime.timezone.utc), 
 measure='experience'),
@@ -37,7 +40,7 @@ tzinfo=datetime.timezone.utc), updated_at=datetime.datetime(2022, 1, 3, 6, 0, 1,
 ends_at=datetime.datetime(2021, 9, 24, 5, 0, tzinfo=datetime.timezone.utc), competition_type='classic', group_id=None, created_at=datetime.datetime(2021, 9, 14, 1, 44, 6, 323000,      
 tzinfo=datetime.timezone.utc), updated_at=datetime.datetime(2021, 9, 24, 6, 0, 0, 589000, tzinfo=datetime.timezone.utc), duration='1 week', participant_count=71)
 ]
-"""
+2601528
 ```
 ## Endpoints
 
