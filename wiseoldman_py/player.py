@@ -179,7 +179,7 @@ class Player(BaseModel):
     combat_level: int = Field(alias="combatLevel")
     latest_snapshot: LatestStats = Field(alias="latestSnapshot")
 
-    def get_achievements(self, error_if_none=False) -> list[Achievement]:
+    def get_achievements(self) -> list[Achievement]:
         """📞 Makes another call to the API. Returns any achievements the player has."""
         player_achievement_json = requests.get(f"{WOM_BASE_URL}/players/{self.player_id}/achievements").json()
 
@@ -187,10 +187,7 @@ class Player(BaseModel):
         for a in player_achievement_json:
             achievements.append(Achievement(**a))
 
-        if len(achievements) == 0 and error_if_none:
-            raise PlayerHasNoAchievementsError
-        else:
-            return achievements
+        return achievements
 
     def get_competitions(self) -> list[Competition]:
         """📞 Makes another call to the API. Returns any competitions the player has ever been in"""
