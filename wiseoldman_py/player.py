@@ -5,6 +5,8 @@ from typing import Optional
 import requests
 from pydantic import BaseModel, Field
 
+from wiseoldman_py.competitions import Competition
+
 from .modules.calculators import get_level, get_virtual_level
 from .modules.static import WOM_BASE_URL
 from .wom_exceptions import PlayerHasNoAchievementsError
@@ -189,3 +191,12 @@ class Player(BaseModel):
             raise PlayerHasNoAchievementsError
         else:
             return achievements
+
+    def get_competitions(self) -> list[Competition]:
+        """📞 Makes another call to the API. Returns any competitions the player has ever been in"""
+        player_competition_json = requests.get(f"{WOM_BASE_URL}/players/{self.player_id}/competitions").json()
+
+        competitions = []
+        for c in player_competition_json:
+            competitions.append(Competition(**c))
+        return competitions
