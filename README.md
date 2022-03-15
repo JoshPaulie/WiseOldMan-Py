@@ -47,6 +47,7 @@ tzinfo=datetime.timezone.utc), updated_at=datetime.datetime(2021, 9, 24, 6, 0, 0
 ### Player
 - `/players` 👉 `WiseOldMan.get_player(username=, user_id=) -> Player`
 - `/players/<id>/achievements` 👉 `Player.get_achievements() -> List[Achievement]`
+- `/players/<id>/competitions` 👉 `Player.get_competitions() -> List[Competition]`
 
 ### Groups
 - `/groups/<id>` 👉 `WiseOldMan.get_group(group_id=) -> Group`
