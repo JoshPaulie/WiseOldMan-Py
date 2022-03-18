@@ -7,7 +7,7 @@ from pydantic import BaseModel, Field
 
 from wiseoldman_py.competitions import Competition
 
-from .modules.calculators import get_level, get_virtual_level
+from .modules.calculators import get_level
 from .modules.static import WOM_BASE_URL
 
 
@@ -37,7 +37,7 @@ class Skill(BaseModel):
     @property
     def virtual_level(self) -> int:
         """Returns Skill's level up to and beyond 99"""
-        return get_virtual_level(self.exp)
+        return get_level(self.exp, virtual_level=True)
 
 
 class BossKC(BaseModel):
