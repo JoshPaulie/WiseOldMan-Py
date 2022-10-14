@@ -17,8 +17,8 @@ from wiseoldman_py.player import Player
 
 wom = wiseoldman.WiseOldMan()
 bexlii: Player = wom.get_player("bexlii") # Creates Player object, with player's most recent snapshot. Searchable by user id as well
-bexlii_achivements = bexlii.get_achievements() # Returns list of any achievements awarded
-bexlii_competitions = bexlii.get_competitions() # Returns list of any competitions particiapted in
+bexlii_achivements: list[Achievement] = bexlii.get_achievements()
+bexlii_competitions: list[Competition] = bexlii.get_competitions()
 
 print(bexlii_achivements)
 print(bexlii_competitions)
